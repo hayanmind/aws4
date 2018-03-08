@@ -1,5 +1,4 @@
 var aws4 = exports,
-    url = require('url'),
     querystring = require('querystring'),
     crypto = require('crypto'),
     lru = require('./lru'),
@@ -25,8 +24,6 @@ function encodeRfc3986(urlEncodedString) {
 // request: { path | body, [host], [method], [headers], [service], [region] }
 // credentials: { accessKeyId, secretAccessKey, [sessionToken] }
 function RequestSigner(request, credentials) {
-
-  if (typeof request === 'string') request = url.parse(request)
 
   var headers = request.headers = (request.headers || {}),
       hostParts = this.matchHost(request.hostname || request.host || headers.Host || headers.host)
